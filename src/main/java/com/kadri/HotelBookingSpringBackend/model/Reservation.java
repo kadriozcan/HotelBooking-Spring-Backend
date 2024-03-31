@@ -45,7 +45,7 @@ public class Reservation {
         calculateNumOfGuests();
     }
 
-    public void setBookingConfirmationCode(String bookingConfirmationCode) {
+    public void setConfirmationCode(String confirmationCode) {
         this.confirmationCode = confirmationCode;
     }
 }

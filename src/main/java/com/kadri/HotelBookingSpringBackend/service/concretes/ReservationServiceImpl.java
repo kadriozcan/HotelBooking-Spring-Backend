@@ -1,4 +1,4 @@
 package com.kadri.HotelBookingSpringBackend.service.concretes;
 
-public class BookedRoomServiceImpl {
+public class ReservationServiceImpl {
 }

@@ -1,4 +1,4 @@
 package com.kadri.HotelBookingSpringBackend.service.abstracts;
 
-public interface BookedRoomService {
+public interface ReservationService {
 }
