@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ import java.util.List;
 public class RoomController {
     private final RoomService roomService;
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo") MultipartFile file,
                                                    @RequestParam("roomType") String roomType,
                                                    @RequestParam("roomPrice") BigDecimal roomPrice) throws SQLException, IOException {
@@ -32,5 +33,17 @@ public class RoomController {
     @GetMapping("/room-types")
     public List<String> getRoomTypes() {
         return roomService.getAllRoomTypes();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<RoomResponse>> getAllRooms() {
+        List<Room> rooms = roomService.getAllRooms();
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        for (Room room : rooms) {
+            RoomResponse roomResponse = RoomMapper.INSTANCE.toRoomResponse(room);
+            roomResponses.add(roomResponse);
+        }
+
+        return ResponseEntity.ok(roomResponses);
     }
 }

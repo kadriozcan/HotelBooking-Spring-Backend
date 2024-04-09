@@ -38,4 +38,9 @@ public class RoomServiceImpl implements RoomService {
     public List<String> getAllRoomTypes() {
         return repository.findRoomTypes();
     }
+
+    @Override
+    public List<Room> getAllRooms() {
+        return repository.findAll();
+    }
 }
