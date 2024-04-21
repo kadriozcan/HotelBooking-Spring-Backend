@@ -1,6 +1,5 @@
 package com.kadri.HotelBookingSpringBackend.service.concretes;
 
-import com.kadri.HotelBookingSpringBackend.mapper.RoomMapper;
 import com.kadri.HotelBookingSpringBackend.model.Room;
 import com.kadri.HotelBookingSpringBackend.repository.RoomRepository;
 import com.kadri.HotelBookingSpringBackend.service.abstracts.RoomService;
@@ -14,6 +13,7 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,4 +43,20 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> getAllRooms() {
         return repository.findAll();
     }
+
+    @Override
+    public Room getRoomById(Long id) {
+        Optional<Room> optionalRoom = repository.findById(id);
+        return optionalRoom.orElse(null);
+    }
+
+    @Override
+    public void deleteRoom(Long roomId) {
+        Optional<Room> roomToDelete = repository.findById(roomId);
+        if (roomToDelete.isPresent()) {
+            repository.deleteById(roomId);
+        }
+    }
+
+
 }

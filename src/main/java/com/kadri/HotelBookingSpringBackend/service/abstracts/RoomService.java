@@ -1,6 +1,5 @@
 package com.kadri.HotelBookingSpringBackend.service.abstracts;
 
-import com.kadri.HotelBookingSpringBackend.mapper.RoomMapper;
 import com.kadri.HotelBookingSpringBackend.model.Room;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,4 +14,8 @@ public interface RoomService {
     List<String> getAllRoomTypes();
 
     List<Room> getAllRooms();
+
+    void deleteRoom(Long roomId);
+
+    Room getRoomById(Long id);
 }
