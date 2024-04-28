@@ -1,5 +1,7 @@
 package com.kadri.HotelBookingSpringBackend.service.concretes;
 
+import com.kadri.HotelBookingSpringBackend.exception.InternalServerException;
+import com.kadri.HotelBookingSpringBackend.exception.ResourceNotFoundException;
 import com.kadri.HotelBookingSpringBackend.model.Room;
 import com.kadri.HotelBookingSpringBackend.repository.RoomRepository;
 import com.kadri.HotelBookingSpringBackend.service.abstracts.RoomService;
@@ -48,6 +50,34 @@ public class RoomServiceImpl implements RoomService {
     public Room getRoomById(Long id) {
         Optional<Room> optionalRoom = repository.findById(id);
         return optionalRoom.orElse(null);
+    }
+
+    @Override
+    public byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException {
+        Optional<Room> room = repository.findById(roomId);
+        if (room.isEmpty()) {
+            throw new ResourceNotFoundException("Sorry, Room not found!");
+        }
+        Blob photoBlob = room.get().getPhoto();
+        if (photoBlob != null) {
+            return photoBlob.getBytes(1, (int) photoBlob.length());
+        }
+        return null;
+    }
+
+    @Override
+    public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photoBytes) {
+        Room room = repository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room not found!"));
+        if (roomType != null) room.setRoomType(roomType);
+        if (roomPrice != null) room.setRoomPrice(roomPrice);
+        if (photoBytes != null && photoBytes.length > 0) {
+            try {
+                room.setPhoto(new SerialBlob(photoBytes));
+            } catch (SQLException e) {
+                throw new InternalServerException("Error updating the room!");
+            }
+        }
+        return repository.save(room);
     }
 
     @Override
