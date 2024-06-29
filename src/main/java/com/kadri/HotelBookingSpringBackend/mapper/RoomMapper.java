@@ -1,7 +1,7 @@
 package com.kadri.HotelBookingSpringBackend.mapper;
 
 import com.kadri.HotelBookingSpringBackend.model.Room;
-import com.kadri.HotelBookingSpringBackend.response.RoomResponse;
+import com.kadri.HotelBookingSpringBackend.dto.response.RoomResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;

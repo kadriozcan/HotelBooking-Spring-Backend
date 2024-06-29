@@ -1,4 +1,4 @@
-package com.kadri.HotelBookingSpringBackend.response;
+package com.kadri.HotelBookingSpringBackend.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReservationResponse {
+public class BookingResponse {
 
     private Long id;
 
@@ -31,7 +31,7 @@ public class ReservationResponse {
 
     private RoomResponse room;
 
-    public ReservationResponse(Long id, LocalDate checkInDate, LocalDate checkOutDate, String bookingConfirmationCode) {
+    public BookingResponse(Long id, LocalDate checkInDate, LocalDate checkOutDate, String bookingConfirmationCode) {
         this.id = id;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;

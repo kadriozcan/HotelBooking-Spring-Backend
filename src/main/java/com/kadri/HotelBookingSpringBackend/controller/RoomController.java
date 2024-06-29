@@ -2,7 +2,7 @@ package com.kadri.HotelBookingSpringBackend.controller;
 
 import com.kadri.HotelBookingSpringBackend.mapper.RoomMapper;
 import com.kadri.HotelBookingSpringBackend.model.Room;
-import com.kadri.HotelBookingSpringBackend.response.RoomResponse;
+import com.kadri.HotelBookingSpringBackend.dto.response.RoomResponse;
 import com.kadri.HotelBookingSpringBackend.service.abstracts.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

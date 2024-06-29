@@ -28,21 +28,21 @@ public class Room {
     private Blob photo;
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Reservation> reservations;
+    private List<Booking> bookings;
 
 
     public Room() {
-        this.reservations = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
-    public void addReservation(Reservation reservation) {
-        if (reservations == null) {
-            reservations = new ArrayList<>();
+    public void addBooking(Booking booking) {
+        if (bookings == null) {
+            bookings = new ArrayList<>();
         }
-        reservations.add(reservation);
-        reservation.setRoom(this);
+        bookings.add(booking);
+        booking.setRoom(this);
         isBooked = true;
         String reservationCode = RandomStringUtils.randomNumeric(10);
-        reservation.setConfirmationCode(reservationCode);
+        booking.setConfirmationCode(reservationCode);
     }
 }
